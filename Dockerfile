@@ -8,5 +8,6 @@ RUN pip install \
     mutmut \
     pylint \
     pytest \
+    pytest-cov \
     rope
 CMD make
