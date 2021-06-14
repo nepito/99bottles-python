@@ -1,0 +1,22 @@
+name: Tests
+on:
+  pull_request:
+    branches:
+      - develop
+      - master
+  push:
+    branches:
+      - develop
+      - master
+jobs:
+  actions:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Copia repositorio
+      uses: actions/checkout@v2
+    - name: Construye imagen
+      run: docker build --tag bottles .
+    - name: Verifica el formato
+      run: docker run bottles make check
+    - name: Corre pruebas y evalua cobertura
+      run: docker run bottles make tests
